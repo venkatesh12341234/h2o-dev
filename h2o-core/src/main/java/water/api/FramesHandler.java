@@ -4,14 +4,14 @@ import hex.Model;
 import water.*;
 import water.api.ModelsHandler.Models;
 import water.exceptions.*;
-import water.fvec.Chunk;
 import water.fvec.Frame;
 import water.fvec.Vec;
 import water.persist.PersistManager;
 import water.util.FileUtils;
 import water.util.Log;
 
-import java.io.*;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.*;
 
 class FramesHandler<I extends FramesHandler.Frames, S extends FramesBase<I, S>> extends Handler {
@@ -213,7 +213,7 @@ class FramesHandler<I extends FramesHandler.Frames, S extends FramesBase<I, S>> 
       h.entries[i].ip_port = n.getIpPortString();
     }
 
-    Frame frame = getFromDKV("key", s.key.key()); // safe
+    Frame frame = getFromDKV("key", s.frame_id.key()); // safe
     int numVecs = frame.vecs().length;
     h.num_vecs = numVecs;
     Vec any = frame.anyVec();
