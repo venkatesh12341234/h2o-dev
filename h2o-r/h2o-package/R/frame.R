@@ -230,7 +230,7 @@ h2o.splitFrame <- function(data, ratios = 0.75, destination_frames) {
   job_key <- res$key$name
   .h2o.__waitOnJob(data@conn, job_key)
 
-  splits <- lapply(res$dest_keys, function(s) h2o.getFrame(s$name))
+  splits <- lapply(res$destination_frames, function(s) h2o.getFrame(s$name))
 }
 
 #h2o.ignoreColumns <- function(data, max_na = 0.2) {
