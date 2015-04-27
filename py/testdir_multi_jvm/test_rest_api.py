@@ -393,11 +393,11 @@ class DatasetSpec(dict):
             print "import_result: "
             pp.pprint(import_result)
             print "frames: "
-            pp.pprint(a_node.frames(key=import_result['frame_ids'][0], row_count=5))
+            pp.pprint(a_node.frames(key=import_result['destination_frames'][0], row_count=5))
 
-        frames = a_node.frames(key=import_result['frame_ids'][0], row_count=5)['frames']
+        frames = a_node.frames(key=import_result['destination_frames'][0], row_count=5)['frames']
         assert frames[0]['is_text'], "FAIL: Raw imported Frame is not is_text: " + repr(frames[0])
-        parse_result = a_node.parse(key=import_result['frame_ids'][0], dest_key=self['dest_key']) # TODO: handle multiple files
+        parse_result = a_node.parse(key=import_result['destination_frames'][0], dest_key=self['dest_key']) # TODO: handle multiple files
         key = parse_result['frames'][0]['frame_id']['name']
         assert key == self['dest_key'], 'FAIL: Imported frame key is wrong; expected: ' + self['dest_key'] + ', got: ' + key
         assert self['expected_rows'] == parse_result['frames'][0]['rows'], 'FAIL: Imported frame number of rows is wrong; expected: ' + str(self['expected_rows']) + ', got: ' + str(parse_result['frames'][0]['rows'])
